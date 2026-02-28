@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon Miroir — Démonstration</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bleu: #1A3A5C;
+  --or: #C9A84C;
+  --or-clair: #E8C97A;
+  --blanc: #F9F6F0;
+  --gris: #6B7280;
+  --rouge: #C0392B;
+  --vert: #2E7D32;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--blanc); color: #1a1a1a; }
+
+/* HERO */
+.hero {
+  background: var(--bleu);
+  color: white;
+  padding: 4rem 2rem 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 60% 0%, rgba(201,168,76,0.15), transparent 60%);
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(201,168,76,0.2);
+  border: 1px solid rgba(201,168,76,0.4);
+  color: var(--or-clair);
+  font-size: 0.7rem; letter-spacing: 0.25em;
+  text-transform: uppercase; padding: 0.4rem 1rem;
+  border-radius: 20px; margin-bottom: 1.5rem;
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 300; line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+.hero-title em { color: var(--or); font-style: italic; }
+.hero-sub {
+  font-size: 1rem; color: rgba(255,255,255,0.7);
+  max-width: 540px; margin: 0 auto 2rem;
+  line-height: 1.7;
+}
+.hero-author {
+  font-size: 0.8rem; color: rgba(255,255,255,0.5);
+  letter-spacing: 0.05em;
+}
+.hero-author strong { color: var(--or-clair); }
+
+/* NAV DEMO */
+.demo-nav {
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0.8rem 2rem;
+  display: flex; gap: 0.5rem; justify-content: center;
+  flex-wrap: wrap; position: sticky; top: 0; z-index: 50;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+}
+.nav-tab {
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px; border: 1px solid #e5e7eb;
+  background: white; cursor: pointer; font-size: 0.82rem;
+  font-family: 'DM Sans', sans-serif; color: var(--gris);
+  transition: all 0.2s;
+}
+.nav-tab.active { background: var(--bleu); color: white; border-color: var(--bleu); }
+.nav-tab:hover:not(.active) { border-color: var(--bleu); color: var(--bleu); }
+
+/* SECTIONS */
+.section { display: none; padding: 3rem 1.5rem; max-width: 860px; margin: 0 auto; }
+.section.active { display: block; animation: fadeIn 0.4s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; } }
+
+.section-eyebrow {
+  font-size: 0.68rem; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--or);
+  margin-bottom: 0.5rem; font-weight: 500;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 400; color: var(--bleu);
+  margin-bottom: 0.5rem; line-height: 1.2;
+}
+.section-title em { font-style: italic; color: var(--rouge); }
+.section-desc {
+  font-size: 0.95rem; color: var(--gris);
+  line-height: 1.75; margin-bottom: 2rem;
+  max-width: 620px;
+}
+.divider {
+  width: 48px; height: 2px;
+  background: var(--or); margin-bottom: 2rem;
+}
+
+/* CARDS */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; margin-bottom: 2rem; }
+.card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px; padding: 1.4rem;
+  transition: all 0.2s;
+}
+.card:hover { border-color: var(--bleu); box-shadow: 0 4px 16px rgba(26,58,92,0.08); transform: translateY(-2px); }
+.card-icon { font-size: 1.6rem; margin-bottom: 0.7rem; }
+.card-title { font-weight: 600; font-size: 0.9rem; color: var(--bleu); margin-bottom: 0.4rem; }
+.card-text { font-size: 0.8rem; color: var(--gris); line-height: 1.6; }
+
+/* TIMELINE */
+.timeline { display: flex; flex-direction: column; gap: 0; }
+.tl-item { display: grid; grid-template-columns: 120px 1fr; gap: 1.5rem; padding: 1.5rem 0; border-bottom: 1px solid #f0f0f0; }
+.tl-item:last-child { border-bottom: none; }
+.tl-phase { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--or); padding-top: 0.2rem; }
+.tl-content {}
+.tl-title { font-weight: 600; font-size: 0.95rem; color: var(--bleu); margin-bottom: 0.3rem; }
+.tl-week { font-size: 0.75rem; color: var(--gris); margin-bottom: 0.6rem; }
+.tl-points { display: flex; flex-direction: column; gap: 0.3rem; }
+.tl-point { font-size: 0.82rem; color: #444; display: flex; gap: 0.5rem; }
+.tl-point::before { content: '—'; color: var(--or); flex-shrink: 0; }
+
+/* CHAT DEMO */
+.chat-wrap {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px; overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+.chat-header {
+  background: var(--bleu);
+  padding: 1rem 1.5rem;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.chat-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--or); }
+.chat-title { font-size: 0.9rem; color: white; font-weight: 500; }
+.chat-status { margin-left: auto; font-size: 0.72rem; color: rgba(255,255,255,0.6); }
+
+.chat-lang {
+  background: #f8f9fa;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0.6rem 1.5rem;
+  display: flex; gap: 0.5rem; align-items: center;
+}
+.lang-label { font-size: 0.72rem; color: var(--gris); margin-right: 0.3rem; }
+.lang-btn {
+  padding: 0.25rem 0.7rem; border-radius: 4px;
+  border: 1px solid #e5e7eb; background: white;
+  font-size: 0.72rem; cursor: pointer; font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+.lang-btn.active { background: var(--bleu); color: white; border-color: var(--bleu); }
+
+.messages {
+  padding: 1.5rem; min-height: 300px; max-height: 420px;
+  overflow-y: auto; display: flex; flex-direction: column; gap: 1rem;
+}
+.msg { display: flex; gap: 0.7rem; max-width: 82%; }
+.msg.user { align-self: flex-end; flex-direction: row-reverse; }
+.msg-av {
+  width: 28px; height: 28px; border-radius: 50%;
+  flex-shrink: 0; display: flex; align-items: center;
+  justify-content: center; font-size: 0.8rem;
+}
+.msg-av.ai { background: var(--bleu); color: var(--or); font-weight: 700; }
+.msg-av.usr { background: #e5e7eb; color: #555; }
+.msg-bubble {
+  padding: 0.75rem 1rem; border-radius: 10px;
+  font-size: 0.85rem; line-height: 1.6;
+}
+.msg.ai .msg-bubble { background: #f3f6fa; border: 1px solid #e5e7eb; border-radius: 4px 10px 10px 10px; }
+.msg.user .msg-bubble { background: var(--bleu); color: white; border-radius: 10px 4px 10px 10px; }
+.msg-darija { font-size: 0.75rem; color: var(--or); font-style: italic; margin-top: 0.4rem; padding-top: 0.4rem; border-top: 1px solid #dde8f5; }
+
+.suggestions {
+  padding: 0.8rem 1.5rem;
+  background: #fafafa; border-top: 1px solid #f0f0f0;
+  display: flex; flex-wrap: wrap; gap: 0.4rem;
+}
+.sug {
+  padding: 0.3rem 0.7rem; border-radius: 16px;
+  border: 1px solid #e5e7eb; background: white;
+  font-size: 0.75rem; color: var(--gris); cursor: pointer;
+  font-family: 'DM Sans', sans-serif; transition: all 0.2s;
+}
+.sug:hover { border-color: var(--bleu); color: var(--bleu); }
+
+.chat-input-row {
+  padding: 1rem 1.5rem; border-top: 1px solid #e5e7eb;
+  display: flex; gap: 0.6rem;
+}
+.chat-input {
+  flex: 1; border: 1px solid #e5e7eb; border-radius: 8px;
+  padding: 0.65rem 1rem; font-size: 0.85rem;
+  font-family: 'DM Sans', sans-serif; outline: none;
+  transition: border-color 0.2s;
+}
+.chat-input:focus { border-color: var(--bleu); }
+.send-btn {
+  width: 40px; height: 40px; border-radius: 8px;
+  background: var(--bleu); border: none; cursor: pointer;
+  color: white; font-size: 1rem; transition: background 0.2s;
+}
+.send-btn:hover { background: var(--or); }
+
+/* TYPING */
+.typing { display: flex; gap: 4px; align-items: center; }
+.typing span { width: 5px; height: 5px; border-radius: 50%; background: var(--bleu); opacity: 0.3; animation: bl 1.2s infinite; }
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes bl { 0%,80%,100% { opacity: 0.2; } 40% { opacity: 1; } }
+
+/* FINALITÉ */
+.finalite-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; }
+.fin-card {
+  border-radius: 10px; padding: 1.4rem;
+  border-left: 4px solid var(--bleu);
+  background: white; border: 1px solid #e5e7eb;
+  border-left: 4px solid var(--bleu);
+}
+.fin-who { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bleu); margin-bottom: 0.8rem; }
+.fin-points { display: flex; flex-direction: column; gap: 0.5rem; }
+.fin-point { font-size: 0.82rem; color: #444; display: flex; gap: 0.5rem; align-items: flex-start; line-height: 1.5; }
+.fin-point::before { content: '✓'; color: var(--vert); font-weight: 700; flex-shrink: 0; }
+
+/* FOOTER */
+footer {
+  background: var(--bleu); color: white;
+  padding: 2.5rem 2rem; text-align: center; margin-top: 3rem;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem; font-weight: 300; margin-bottom: 0.5rem;
+}
+.footer-logo em { color: var(--or); font-style: italic; }
+.footer-sub { font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-bottom: 1rem; }
+.footer-contact { font-size: 0.85rem; color: rgba(255,255,255,0.7); }
+.footer-contact a { color: var(--or-clair); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Démonstration — Usage institutionnel</div>
+  <h1 class="hero-title">Mon <em>Miroir</em></h1>
+  <p class="hero-sub">L'intelligence artificielle au service de la subjectivation des Mineurs Non Accompagnés — un outil de récit de vie bilingue pour éclairer les décisions judiciaires.</p>
+  <p class="hero-author">Projet porté par <strong>Si Mohamed ANAYA</strong> — Interprète Expert Judiciaire · Tribunal pour Enfants de Toulouse</p>
+</div>
+
+<!-- NAV -->
+<div class="demo-nav">
+  <button class="nav-tab active" onclick="showSection('presentation', this)">📋 Présentation</button>
+  <button class="nav-tab" onclick="showSection('miroir', this)">🪞 Le Miroir en action</button>
+  <button class="nav-tab" onclick="showSection('deploiement', this)">📅 Déploiement</button>
+  <button class="nav-tab" onclick="showSection('finalite', this)">⚖️ Finalité judiciaire</button>
+</div>
+
+<!-- SECTION : PRÉSENTATION -->
+<div class="section active" id="s-presentation">
+  <p class="section-eyebrow">01 — Le projet</p>
+  <h2 class="section-title">Qu'est-ce que <em>Mon Miroir</em> ?</h2>
+  <div class="divider"></div>
+  <p class="section-desc">Une application mobile et web qui permet au MNA de construire son récit de vie avec l'aide de l'intelligence artificielle — dans sa langue d'origine et en français — pour produire un CV Interactif utilisable par les magistrats et les éducateurs.</p>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">🎨</div>
+      <div class="card-title">IA Designer</div>
+      <div class="card-text">Valorise l'image de soi du jeune. Portrait numérique, dignité visuelle, identité graphique personnelle.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📖</div>
+      <div class="card-title">IA Scénariste</div>
+      <div class="card-text">Guide la construction du récit de vie. Transforme le trauma en narration. Projection vers l'avenir.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📅</div>
+      <div class="card-title">IA Pilote</div>
+      <div class="card-text">Gère l'agenda institutionnel du jeune. Audiences, santé, foyer, formation — il reste visible et joignable.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">👤</div>
+      <div class="card-title">Le Pilote Humain</div>
+      <div class="card-text">Si Mohamed ANAYA oriente et supervise les 3 agents IA. Garant de la dimension clinique, culturelle et éthique.</div>
+    </div>
+  </div>
+
+  <div style="background:#f0f4f8;border-left:4px solid var(--bleu);border-radius:6px;padding:1.2rem 1.5rem;font-size:0.88rem;color:#2d3748;line-height:1.7">
+    <strong style="color:var(--bleu)">Fondement théorique :</strong> Winnicott (espace transitionnel), Lacan (stade du miroir), Lévi-Strauss (pensée sauvage). Le smartphone devient l'objet transitionnel entre l'intériorité du mineur et la société d'accueil.
+  </div>
+</div>
+
+<!-- SECTION : MIROIR EN ACTION -->
+<div class="section" id="s-miroir">
+  <p class="section-eyebrow">02 — Démonstration</p>
+  <h2 class="section-title">Le <em>Miroir</em> en action</h2>
+  <div class="divider"></div>
+  <p class="section-desc">Simulez une session de récit de vie guidée par l'IA, en français et en darija. C'est exactement ce que vit le jeune MNA lors de chaque session.</p>
+
+  <div class="chat-wrap">
+    <div class="chat-header">
+      <div class="chat-dot"></div>
+      <div class="chat-title">Mon Miroir — Session Youssef, 16 ans</div>
+      <div class="chat-status">● Session active</div>
+    </div>
+    <div class="chat-lang">
+      <span class="lang-label">Langue :</span>
+      <button class="lang-btn active">🇫🇷 Français</button>
+      <button class="lang-btn">🇲🇦 Darija</button>
+    </div>
+    <div class="messages" id="msgs">
+      <div class="msg ai">
+        <div class="msg-av ai">M</div>
+        <div class="msg-bubble">
+          Bonjour Youssef. Je suis ton Miroir — un espace rien que pour toi. Personne ne te jugera ici.<br><br>
+          Commençons doucement. <strong>Qu'est-ce que tu aimais faire avant de partir ?</strong>
+          <div class="msg-darija">مرحبا يوسف. هادا "المرآة" ديالك. اشنو كنت تحب دير فبلادك؟</div>
+        </div>
+      </div>
+      <div class="msg" id="typing-el" style="display:none">
+        <div class="msg-av ai">M</div>
+        <div class="msg-bubble"><div class="typing"><span></span><span></span><span></span></div></div>
+      </div>
+    </div>
+    <div class="suggestions">
+      <button class="sug" onclick="inject(this)">Je jouais au foot</button>
+      <button class="sug" onclick="inject(this)">J'aidais ma famille</button>
+      <button class="sug" onclick="inject(this)">J'étais à l'école</button>
+      <button class="sug" onclick="inject(this)">Je travaillais</button>
+    </div>
+    <div class="chat-input-row">
+      <input class="chat-input" id="cinput" type="text" placeholder="Écrivez en français ou en darija…" onkeydown="if(event.key==='Enter')send()">
+      <button class="send-btn" onclick="send()">↑</button>
+    </div>
+  </div>
+
+  <div style="margin-top:1.5rem;background:#fff8e1;border:1px solid #ffe082;border-radius:8px;padding:1rem 1.2rem;font-size:0.82rem;color:#5d4037">
+    <strong>Note pour les magistrats :</strong> Cette conversation est guidée par Claude (Anthropic). Chaque réponse du jeune est analysée pour identifier ses compétences, ses ressources et ses vulnérabilités — et produire une synthèse transmissible aux acteurs institutionnels.
+  </div>
+</div>
+
+<!-- SECTION : DÉPLOIEMENT -->
+<div class="section" id="s-deploiement">
+  <p class="section-eyebrow">03 — Plan d'action</p>
+  <h2 class="section-title">Déploiement en <em>12 semaines</em></h2>
+  <div class="divider"></div>
+  <p class="section-desc">La phase pilote peut démarrer dans 30 jours, sans financement externe. Elle repose sur le temps du porteur de projet, un smartphone et des applications gratuites.</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-phase">Phase 1<br>Sem. 1–4</div>
+      <div class="tl-content">
+        <div class="tl-title">Amorçage & restauration de l'image</div>
+        <div class="tl-week">Semaines 1 à 4</div>
+        <div class="tl-points">
+          <div class="tl-point">Accord institutionnel avec le Juge des Enfants et le Parquet</div>
+          <div class="tl-point">Convention avec un foyer MNA pilote à Toulouse</div>
+          <div class="tl-point">Sélection de 3 à 5 MNA volontaires</div>
+          <div class="tl-point">Premier contact via l'IA Designer : portrait numérique, dignité visuelle</div>
+        </div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-phase">Phase 2<br>Sem. 5–8</div>
+      <div class="tl-content">
+        <div class="tl-title">Tissage narratif</div>
+        <div class="tl-week">Semaines 5 à 8</div>
+        <div class="tl-points">
+          <div class="tl-point">Activation de l'IA Scénariste : construction du récit de vie</div>
+          <div class="tl-point">Sessions individuelles guidées par le Pilote humain</div>
+          <div class="tl-point">Coordination avec PJJ, ASE, éducateurs référents</div>
+          <div class="tl-point">Signalement des vulnérabilités aux magistrats</div>
+        </div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-phase">Phase 3<br>Sem. 9–12</div>
+      <div class="tl-content">
+        <div class="tl-title">Ancrage institutionnel</div>
+        <div class="tl-week">Semaines 9 à 12</div>
+        <div class="tl-points">
+          <div class="tl-point">Finalisation du CV Interactif de chaque MNA</div>
+          <div class="tl-point">Présentation aux magistrats, éducateurs et partenaires</div>
+          <div class="tl-point">Mesure de l'impact : audiences, fugues, ruptures de parcours</div>
+          <div class="tl-point">Restitution au Tribunal et au Parquet — propositions de déploiement</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION : FINALITÉ -->
+<div class="section" id="s-finalite">
+  <p class="section-eyebrow">04 — Impact</p>
+  <h2 class="section-title">Finalité <em>judiciaire</em> & sociale</h2>
+  <div class="divider"></div>
+  <p class="section-desc">Le CV Interactif devient un support de médiation concret — une preuve tangible et vivante de l'évolution du mineur, là où les rapports écrits restent abstraits.</p>
+
+  <div style="background:var(--bleu);color:white;border-radius:10px;padding:1.5rem;text-align:center;margin-bottom:2rem">
+    <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;opacity:0.9;margin-bottom:0.5rem">La transformation fondamentale</div>
+    <div style="font-size:0.9rem;opacity:0.7">D'un individu passif « sous procédure »…</div>
+    <div style="font-size:1rem;font-weight:500;color:var(--or-clair);margin-top:0.4rem">…il devient un Sujet actif de son intégration.</div>
+  </div>
+
+  <div class="finalite-grid">
+    <div class="fin-card">
+      <div class="fin-who">Pour les magistrats</div>
+      <div class="fin-points">
+        <div class="fin-point">Outil d'évaluation complémentaire aux rapports PJJ et ASE</div>
+        <div class="fin-point">Meilleure compréhension du profil psychique et culturel</div>
+        <div class="fin-point">Décisions mieux éclairées sur le statut et l'orientation</div>
+      </div>
+    </div>
+    <div class="fin-card" style="border-left-color:var(--rouge)">
+      <div class="fin-who" style="color:var(--rouge)">Pour les éducateurs</div>
+      <div class="fin-points">
+        <div class="fin-point">Lien renforcé entre le jeune et les institutions</div>
+        <div class="fin-point">Réduction des fugues et ruptures de parcours</div>
+        <div class="fin-point">Outil de coordination inter-acteurs</div>
+      </div>
+    </div>
+    <div class="fin-card" style="border-left-color:var(--vert)">
+      <div class="fin-who" style="color:var(--vert)">Pour le MNA</div>
+      <div class="fin-points">
+        <div class="fin-point">Restauration d'une identité et d'une dignité</div>
+        <div class="fin-point">Récit de vie qui donne sens au parcours d'exil</div>
+        <div class="fin-point">Projet d'insertion concret et personnalisé</div>
+        <div class="fin-point">Visibilité dans le réseau institutionnel</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem;background:#f0f4f8;border-radius:8px;padding:1.5rem;text-align:center">
+    <div style="font-size:0.8rem;color:var(--gris);margin-bottom:0.5rem">Contact pour présentation de vive voix</div>
+    <div style="font-weight:600;color:var(--bleu);font-size:1rem">Si Mohamed ANAYA</div>
+    <div style="font-size:0.85rem;color:var(--gris);margin-top:0.3rem">06 67 01 83 42 · Mohamedanaya@hotmail.fr</div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Mon <em>Miroir</em></div>
+  <div class="footer-sub">Projet Récit de Vie · Tribunal pour Enfants de Toulouse · Février 2026</div>
+  <div class="footer-contact">Si Mohamed ANAYA · <a href="mailto:Mohamedanaya@hotmail.fr">Mohamedanaya@hotmail.fr</a> · 06 67 01 83 42</div>
+</footer>
+
+<script>
+function showSection(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('s-' + id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: document.querySelector('.demo-nav').offsetTop - 10, behavior: 'smooth' });
+}
+
+function inject(btn) {
+  document.getElementById('cinput').value = btn.textContent;
+}
+
+const aiReplies = [
+  { fr: "C'est beau ça. <strong>Le foot avec les amis, aider ta famille</strong> — tu avais une vraie place dans ta vie là-bas.<br><br>Est-ce qu'il y a une chose que tu faisais mieux que les autres — même une petite chose ?", da: "واه، كنت عندك بلاصة فحياتك. واش كاين حاجة كنت تديرها مزيان على خاطر الناس؟" },
+  { fr: "Je t'entends. Ce que tu décris, c'est une vraie compétence — <strong>savoir s'organiser, aider les autres, être fiable</strong>. Beaucoup de gens de ton âge ne savent pas faire ça.<br><br>Qu'est-ce qui t'a le plus manqué depuis ton arrivée en France ?", da: "فاهمك. هاد الحاجات لي تقول عليها — هي مهارات حقيقية. اشنو كان ينقصك من كثر منذ وصلتي فرنسا؟" },
+  { fr: "Merci de partager ça avec moi. <strong>Ton histoire compte</strong>, et elle mérite d'être racontée.<br><br>Si tu pouvais dire une seule chose aux personnes qui vont décider de ton avenir — qu'est-ce que tu leur dirais ?", da: "شكرا باش تشارك هاد الحوايج. قصتك مهمة. اشنو غادي تقول للناس لي غادي يقررو على مستقبلك؟" }
+];
+let ri = 0;
+
+function send() {
+  const input = document.getElementById('cinput');
+  const text = input.value.trim();
+  if (!text) return;
+  const msgs = document.getElementById('msgs');
+  const typing = document.getElementById('typing-el');
+  const userDiv = document.createElement('div');
+  userDiv.className = 'msg user';
+  userDiv.innerHTML = `<div class="msg-av usr">👤</div><div class="msg-bubble">${text}</div>`;
+  msgs.insertBefore(userDiv, typing);
+  input.value = '';
+  typing.style.display = 'flex';
+  msgs.scrollTop = msgs.scrollHeight;
+  setTimeout(() => {
+    typing.style.display = 'none';
+    const r = aiReplies[ri % aiReplies.length]; ri++;
+    const aiDiv = document.createElement('div');
+    aiDiv.className = 'msg ai';
+    aiDiv.innerHTML = `<div class="msg-av ai">M</div><div class="msg-bubble">${r.fr}<div class="msg-darija">${r.da}</div></div>`;
+    msgs.insertBefore(aiDiv, typing);
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 1800);
+}
+</script>
+</body>
+</html>
