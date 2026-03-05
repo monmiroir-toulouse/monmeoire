@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Si Mohamed ANAYA — CV Interactif</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:       #0a1628;
+    --navy-mid:   #0f2744;
+    --navy-light: #1a3a5c;
+    --gold:       #c8922a;
+    --gold-light: #e8b84b;
+    --gold-pale:  #f5e6c0;
+    --cream:      #f9f5ee;
+    --text:       #2a2a2a;
+    --text-soft:  rgba(255,255,255,0.65);
+    --border:     rgba(200,146,42,0.25);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: #fff;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── BACK LINK ── */
+  .back-link {
+    position: fixed; top: 1.2rem; left: 1.5rem; z-index: 200;
+    display: flex; align-items: center; gap: 0.5rem;
+    color: var(--gold-light); text-decoration: none;
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: #fff; }
+  .back-link::before { content: '←'; font-size: 1rem; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(150deg, var(--navy) 0%, #0d2845 55%, #0a2210 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 6rem 2rem 3rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 25% 60%, rgba(200,146,42,0.09) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 40% at 75% 35%, rgba(200,146,42,0.06) 0%, transparent 60%);
+  }
+  .hero-ring {
+    width: 160px; height: 160px; border-radius: 50%;
+    border: 2px solid var(--border);
+    background: radial-gradient(circle at 35% 35%, var(--navy-light), var(--navy-mid));
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 2rem;
+    box-shadow: 0 0 0 6px rgba(200,146,42,0.08), 0 20px 60px rgba(0,0,0,0.5);
+    position: relative; z-index: 1;
+    animation: floatIn 1s ease both;
+  }
+  .hero-initials {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem; color: var(--gold-light); font-style: italic;
+    line-height: 1;
+  }
+  @keyframes floatIn {
+    from { opacity: 0; transform: translateY(24px) scale(0.92); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .hero-label {
+    font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); border: 1px solid var(--border);
+    padding: 0.35rem 1.1rem; border-radius: 2rem; display: inline-block;
+    margin-bottom: 1.2rem; animation: floatIn 1s 0.15s ease both;
+    position: relative; z-index: 1;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 6vw, 4.8rem);
+    line-height: 1.08; margin-bottom: 0.6rem;
+    animation: floatIn 1s 0.25s ease both;
+    position: relative; z-index: 1;
+  }
+  .hero h1 em { color: var(--gold-light); font-style: italic; }
+  .hero-role {
+    font-size: 1rem; color: var(--text-soft); font-weight: 300; letter-spacing: 0.04em;
+    margin-bottom: 2.2rem; line-height: 1.7;
+    animation: floatIn 1s 0.35s ease both;
+    position: relative; z-index: 1;
+  }
+  .hero-badges {
+    display: flex; flex-wrap: wrap; gap: 0.7rem; justify-content: center;
+    margin-bottom: 3rem; animation: floatIn 1s 0.45s ease both;
+    position: relative; z-index: 1;
+  }
+  .badge {
+    font-size: 0.75rem; padding: 0.4rem 1rem; border-radius: 2rem;
+    border: 1px solid var(--border); color: var(--gold-pale);
+    background: rgba(200,146,42,0.07); letter-spacing: 0.04em;
+  }
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    color: var(--text-soft); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    animation: pulse 2.5s ease infinite;
+  }
+  .hero-scroll::after {
+    content: ''; width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+  @keyframes pulse { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
+
+  /* ── TIMELINE CHIFFRES ── */
+  .stats-strip {
+    background: var(--navy-mid);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 2.5rem 2rem;
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 3rem 5rem;
+  }
+  .stat-item { text-align: center; }
+  .stat-n {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem; color: var(--gold-light);
+    line-height: 1;
+  }
+  .stat-l { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-soft); margin-top: 0.3rem; }
+
+  /* ── TABS WRAPPER ── */
+  .cv-section { max-width: 1000px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+
+  .tabs-nav {
+    display: flex; gap: 0; border-bottom: 1px solid var(--border);
+    margin-bottom: 3.5rem; overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs-nav::-webkit-scrollbar { display: none; }
+
+  .tab-btn {
+    flex-shrink: 0;
+    background: none; border: none; cursor: pointer;
+    padding: 1rem 2rem; font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-soft); position: relative; transition: color 0.25s;
+  }
+  .tab-btn::after {
+    content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 2px;
+    background: var(--gold); transform: scaleX(0); transition: transform 0.3s ease;
+  }
+  .tab-btn:hover { color: #fff; }
+  .tab-btn.active { color: var(--gold-light); }
+  .tab-btn.active::after { transform: scaleX(1); }
+
+  .tab-panel { display: none; animation: fadePanel 0.4s ease; }
+  .tab-panel.active { display: block; }
+  @keyframes fadePanel {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── EXPERIENCE TIMELINE ── */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
+    width: 1px; background: linear-gradient(to bottom, var(--gold), rgba(200,146,42,0.1));
+  }
+  .tl-item {
+    position: relative; margin-bottom: 3rem;
+    padding-left: 2rem;
+  }
+  .tl-item::before {
+    content: ''; position: absolute; left: -2rem;
+    top: 8px; width: 9px; height: 9px; border-radius: 50%;
+    background: var(--gold); border: 2px solid var(--navy);
+    box-shadow: 0 0 0 3px rgba(200,146,42,0.25);
+    margin-left: -4px;
+  }
+  .tl-date {
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.4rem;
+  }
+  .tl-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem; color: #fff; margin-bottom: 0.2rem;
+    line-height: 1.3;
+  }
+  .tl-org {
+    font-size: 0.88rem; color: var(--gold-pale); font-weight: 500; margin-bottom: 0.8rem;
+  }
+  .tl-desc {
+    font-size: 0.9rem; color: var(--text-soft); line-height: 1.8;
+    border-left: 2px solid rgba(200,146,42,0.2);
+    padding-left: 1rem;
+  }
+  .tl-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.9rem; }
+  .tl-tag {
+    font-size: 0.7rem; padding: 0.25rem 0.75rem; border-radius: 2rem;
+    background: rgba(200,146,42,0.1); border: 1px solid rgba(200,146,42,0.2);
+    color: var(--gold-pale); letter-spacing: 0.04em;
+  }
+
+  /* ── COMPÉTENCES ── */
+  .skills-intro {
+    font-size: 1rem; color: var(--text-soft); line-height: 1.9; margin-bottom: 3rem;
+    max-width: 680px;
+  }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .skill-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 1rem; padding: 1.8rem;
+    transition: all 0.3s;
+  }
+  .skill-card:hover {
+    background: rgba(200,146,42,0.07);
+    border-color: rgba(200,146,42,0.5);
+    transform: translateY(-3px);
+  }
+  .skill-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+  .skill-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; color: var(--gold-light); margin-bottom: 0.6rem;
+  }
+  .skill-desc { font-size: 0.85rem; color: var(--text-soft); line-height: 1.7; margin-bottom: 1rem; }
+  .skill-bar-wrap { height: 3px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+  .skill-bar {
+    height: 100%; background: linear-gradient(to right, var(--gold), var(--gold-light));
+    border-radius: 3px; transform: scaleX(0); transform-origin: left;
+    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .skill-bar.animated { transform: scaleX(1); }
+
+  .langs-section { margin-top: 3rem; }
+  .langs-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; color: #fff; margin-bottom: 1.5rem;
+  }
+  .langs-grid { display: flex; flex-wrap: wrap; gap: 1rem; }
+  .lang-card {
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    border-radius: 0.8rem; padding: 1.2rem 1.8rem;
+    display: flex; align-items: center; gap: 1rem;
+    transition: all 0.25s;
+  }
+  .lang-card:hover { background: rgba(200,146,42,0.08); border-color: var(--gold); }
+  .lang-flag { font-size: 1.8rem; }
+  .lang-info {}
+  .lang-name { font-weight: 600; color: #fff; font-size: 0.95rem; }
+  .lang-level { font-size: 0.78rem; color: var(--gold); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* ── FORMATION ── */
+  .formation-grid { display: grid; gap: 1.5rem; }
+  .formation-card {
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    border-radius: 1rem; padding: 2rem;
+    display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: start;
+    transition: all 0.3s;
+  }
+  .formation-card:hover { border-color: rgba(200,146,42,0.5); background: rgba(200,146,42,0.05); }
+  .formation-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; color: var(--gold); line-height: 1;
+    white-space: nowrap;
+  }
+  .formation-degree {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; color: #fff; margin-bottom: 0.3rem;
+  }
+  .formation-school { font-size: 0.88rem; color: var(--gold-pale); font-weight: 500; margin-bottom: 0.6rem; }
+  .formation-detail { font-size: 0.85rem; color: var(--text-soft); line-height: 1.7; }
+
+  .certifs-section { margin-top: 3rem; }
+  .certifs-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; color: #fff; margin-bottom: 1.5rem;
+  }
+  .certif-list { display: flex; flex-direction: column; gap: 0.8rem; }
+  .certif-item {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.4rem; border-radius: 0.7rem;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(200,146,42,0.12);
+    font-size: 0.88rem; transition: all 0.2s;
+  }
+  .certif-item:hover { background: rgba(200,146,42,0.07); border-color: var(--gold); }
+  .certif-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+  .certif-name { color: #fff; font-weight: 500; flex: 1; }
+  .certif-date { color: var(--gold); font-size: 0.75rem; letter-spacing: 0.08em; white-space: nowrap; }
+
+  /* ── PROJET MON MIROIR ── */
+  .projet-banner {
+    background: linear-gradient(135deg, rgba(200,146,42,0.15) 0%, rgba(200,146,42,0.05) 100%);
+    border: 1px solid rgba(200,146,42,0.4);
+    border-radius: 1.2rem; padding: 2.5rem;
+    margin-bottom: 3rem; position: relative; overflow: hidden;
+  }
+  .projet-banner::before {
+    content: '🪞';
+    position: absolute; right: 2rem; top: 50%; transform: translateY(-50%);
+    font-size: 5rem; opacity: 0.12;
+  }
+  .projet-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .projet-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #fff; margin-bottom: 0.8rem; }
+  .projet-desc { font-size: 0.92rem; color: var(--text-soft); line-height: 1.8; max-width: 600px; }
+  .projet-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    margin-top: 1.2rem; background: var(--gold); color: var(--navy);
+    padding: 0.65rem 1.4rem; border-radius: 0.4rem;
+    font-weight: 700; font-size: 0.82rem; text-decoration: none;
+    letter-spacing: 0.05em; text-transform: uppercase; transition: background 0.2s;
+  }
+  .projet-link:hover { background: var(--gold-light); }
+
+  /* ── CONTACT ── */
+  .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .contact-intro {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; color: #fff; line-height: 1.4; margin-bottom: 1rem;
+  }
+  .contact-intro em { color: var(--gold-light); font-style: italic; }
+  .contact-sub { font-size: 0.92rem; color: var(--text-soft); line-height: 1.8; margin-bottom: 2rem; }
+  .contact-items { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-item {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1.2rem 1.5rem; border-radius: 0.8rem;
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    text-decoration: none; color: inherit; transition: all 0.25s;
+  }
+  .contact-item:hover { background: rgba(200,146,42,0.1); border-color: var(--gold); transform: translateX(4px); }
+  .contact-item-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .contact-item-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.15rem; }
+  .contact-item-val { font-size: 0.95rem; color: #fff; font-weight: 500; }
+
+  .contact-card {
+    background: linear-gradient(145deg, var(--navy-mid), #0d2010);
+    border: 1px solid var(--border); border-radius: 1.2rem; padding: 2.5rem;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .contact-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(200,146,42,0.1) 0%, transparent 60%);
+  }
+  .contact-avatar {
+    width: 90px; height: 90px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy-light), var(--navy-mid));
+    border: 2px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.2rem; font-family: 'Playfair Display', serif;
+    font-size: 2rem; color: var(--gold-light); font-style: italic;
+    position: relative; z-index: 1;
+  }
+  .contact-name { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #fff; margin-bottom: 0.3rem; position: relative; z-index: 1; }
+  .contact-title-card { font-size: 0.8rem; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 1.5rem; position: relative; z-index: 1; }
+  .contact-card-sep { width: 40px; height: 1px; background: var(--border); margin: 0 auto 1.5rem; position: relative; z-index: 1; }
+  .contact-quote {
+    font-style: italic; font-size: 0.88rem; color: var(--text-soft);
+    line-height: 1.7; position: relative; z-index: 1;
+  }
+  .contact-quote::before { content: '«\00a0'; color: var(--gold); }
+  .contact-quote::after { content: '\00a0»'; color: var(--gold); }
+
+  /* ── FOOTER ── */
+  .cv-footer {
+    background: #070f1a;
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 2rem; text-align: center;
+  }
+  .cv-footer-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #fff; margin-bottom: 0.3rem; }
+  .cv-footer-logo span { color: var(--gold-light); font-style: italic; }
+  .cv-footer-sub { font-size: 0.78rem; color: rgba(255,255,255,0.35); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 680px) {
+    .contact-layout { grid-template-columns: 1fr; }
+    .formation-card { grid-template-columns: 1fr; }
+    .tab-btn { padding: 0.9rem 1.2rem; font-size: 0.78rem; }
+    .hero h1 { font-size: 2.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Retour -->
+<a href="index.html" class="back-link">Accueil</a>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-ring">
+    <span class="hero-initials">SMA</span>
+  </div>
+  <div class="hero-label">CV Interactif · 2026</div>
+  <h1>Si Mohamed <em>ANAYA</em></h1>
+  <p class="hero-role">
+    Interprète Expert Judiciaire · Conseiller d'Orientation<br>
+    Psychologue · Médiateur Interculturel
+  </p>
+  <div class="hero-badges">
+    <span class="badge">Tribunal pour Enfants de Toulouse</span>
+    <span class="badge">Expert près la Cour d'Appel</span>
+    <span class="badge">Spécialiste MNA</span>
+    <span class="badge">CVi — 20 ans</span>
+  </div>
+  <div class="hero-scroll">Parcourir</div>
+</div>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat-item">
+    <div class="stat-n" data-count="20">0</div>
+    <div class="stat-l">Années d'expérience</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-n" data-count="5">0</div>
+    <div class="stat-l">Langues maîtrisées</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-n" data-count="3">0</div>
+    <div class="stat-l">Agents IA Mon Miroir</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-n" data-count="300">0</div>
+    <div class="stat-l">Dossiers suivis (est.)</div>
+  </div>
+</div>
+
+<!-- CV TABS -->
+<div class="cv-section">
+
+  <nav class="tabs-nav" role="tablist">
+    <button class="tab-btn active" role="tab" data-tab="experience" aria-selected="true">Expérience</button>
+    <button class="tab-btn" role="tab" data-tab="competences" aria-selected="false">Compétences</button>
+    <button class="tab-btn" role="tab" data-tab="formation" aria-selected="false">Formation</button>
+    <button class="tab-btn" role="tab" data-tab="projet" aria-selected="false">Mon Miroir</button>
+    <button class="tab-btn" role="tab" data-tab="contact" aria-selected="false">Contact</button>
+  </nav>
+
+  <!-- EXPÉRIENCE -->
+  <div class="tab-panel active" id="tab-experience">
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-date">2020 — Présent</div>
+        <div class="tl-role">Interprète Expert Judiciaire</div>
+        <div class="tl-org">Cour d'Appel de Toulouse · Tribunal pour Enfants</div>
+        <div class="tl-desc">
+          Interprétation lors des audiences judiciaires impliquant des mineurs non accompagnés et des justiciables arabophones. Traduction simultanée et consécutive en français, arabe dialectal (darija), arabe classique. Rôle d'interface culturelle entre l'institution judiciaire et les familles.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">Justice des mineurs</span>
+          <span class="tl-tag">Arabe · Darija · Français</span>
+          <span class="tl-tag">MNA</span>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">2018 — Présent</div>
+        <div class="tl-role">Conseiller d'Orientation Psychologue</div>
+        <div class="tl-org">Indépendant · Réseau institutionnel toulousain</div>
+        <div class="tl-desc">
+          Accompagnement de jeunes en rupture (MNA, adolescents sous main de justice, jeunes adultes en insertion). Bilans psychologiques, entretiens de subjectivation, orientation professionnelle et scolaire. Coordination avec PJJ, ASE, OFPRA, foyers d'accueil et magistrats.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">Psychologie clinique</span>
+          <span class="tl-tag">Orientation</span>
+          <span class="tl-tag">Partenariats institutionnels</span>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">2005 — 2020</div>
+        <div class="tl-role">Praticien CV Interactif (CVi)</div>
+        <div class="tl-org">Méthode François Démarthon · Toulouse</div>
+        <div class="tl-desc">
+          Formation et pratique de la méthode CVi depuis ses débuts : accompagnement à la construction du récit de vie, valorisation des compétences informelles, mise en récit pour l'insertion professionnelle et judiciaire. Plus de 300 bénéficiaires accompagnés. Formation de praticiens.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">CVi · 20 ans</span>
+          <span class="tl-tag">Récit de vie</span>
+          <span class="tl-tag">Formation de formateurs</span>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">2010 — 2018</div>
+        <div class="tl-role">Médiateur Interculturel</div>
+        <div class="tl-org">Structures sociales et éducatives · Région Occitanie</div>
+        <div class="tl-desc">
+          Médiation lors de conflits interculturels en milieu scolaire, en foyer et dans le cadre judiciaire. Animation d'ateliers de cohésion culturelle. Sensibilisation des équipes éducatives aux codes culturels maghrébins et subsahariens. Interprétariat social et éducatif.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">Médiation</span>
+          <span class="tl-tag">Interculturel</span>
+          <span class="tl-tag">Formation d'équipes</span>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-date">2006 — 2012</div>
+        <div class="tl-role">Formateur en Français Langue Étrangère (FLE)</div>
+        <div class="tl-org">Associations d'insertion · Toulouse</div>
+        <div class="tl-desc">
+          Cours de français auprès de publics adultes allophones (primo-arrivants, demandeurs d'asile, réfugiés). Conception de supports pédagogiques adaptés. Intégration par la langue et la culture. Partenariats avec France Horizon, Cimade, associations locales.
+        </div>
+        <div class="tl-tags">
+          <span class="tl-tag">FLE</span>
+          <span class="tl-tag">Primo-arrivants</span>
+          <span class="tl-tag">Ingénierie pédagogique</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- COMPÉTENCES -->
+  <div class="tab-panel" id="tab-competences">
+    <p class="skills-intro">
+      Un profil singulier à l'intersection du droit, de la psychologie et de la culture — où chaque compétence est au service de la parole du jeune, de sa visibilité devant les institutions, et de son avenir.
+    </p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">⚖️</div>
+        <div class="skill-name">Expertise judiciaire</div>
+        <div class="skill-desc">Interprétation en audience, rédaction de rapports pour magistrats, interface entre justiciables et institution. Connaissance approfondie des procédures pénales et civiles pour mineurs.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="--w:0.97"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🧠</div>
+        <div class="skill-name">Psychologie clinique</div>
+        <div class="skill-desc">Bilans psychologiques, entretiens de subjectivation, gestion du trauma. Approche psychodynamique et systémique. Spécialisation adolescents en situation de rupture et MNA.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="--w:0.92"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📖</div>
+        <div class="skill-name">CV Interactif (CVi)</div>
+        <div class="skill-desc">Méthode de construction du récit de vie par les compétences. 20 ans de pratique, formation de praticiens, adaptation aux publics fragilisés, MNA et personnes sous main de justice.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="--w:1.0"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🌍</div>
+        <div class="skill-name">Médiation interculturelle</div>
+        <div class="skill-desc">Décodage des représentations culturelles maghrébines, arabes et subsahariennes. Animation de groupes mixtes. Prévention des malentendus culturels en contexte institutionnel.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="--w:0.95"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🤖</div>
+        <div class="skill-name">IA & outils numériques</div>
+        <div class="skill-desc">Conception et pilotage d'agents IA (Claude / Anthropic) pour l'accompagnement des MNA. Développement du projet Mon Miroir — alliance entre intelligence artificielle et clinique humaine.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="--w:0.82"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🎯</div>
+        <div class="skill-name">Orientation professionnelle</div>
+        <div class="skill-desc">Bilans de compétences, accompagnement VAE, orientation scolaire et professionnelle pour jeunes en insertion. Connaissance du tissu économique et formation d'Occitanie.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="--w:0.90"></div></div>
+      </div>
+    </div>
+
+    <div class="langs-section">
+      <h3 class="langs-title">Langues</h3>
+      <div class="langs-grid">
+        <div class="lang-card">
+          <span class="lang-flag">🇫🇷</span>
+          <div class="lang-info">
+            <div class="lang-name">Français</div>
+            <div class="lang-level">Langue de travail · Expert</div>
+          </div>
+        </div>
+        <div class="lang-card">
+          <span class="lang-flag">🇲🇦</span>
+          <div class="lang-info">
+            <div class="lang-name">Arabe dialectal — Darija</div>
+            <div class="lang-level">Langue maternelle · Expert judiciaire</div>
+          </div>
+        </div>
+        <div class="lang-card">
+          <span class="lang-flag">🕌</span>
+          <div class="lang-info">
+            <div class="lang-name">Arabe classique (فصحى)</div>
+            <div class="lang-level">Courant · Rédaction & Interprétation</div>
+          </div>
+        </div>
+        <div class="lang-card">
+          <span class="lang-flag">🇩🇿</span>
+          <div class="lang-info">
+            <div class="lang-name">Tamazight / Berbère</div>
+            <div class="lang-level">Notions fonctionnelles</div>
+          </div>
+        </div>
+        <div class="lang-card">
+          <span class="lang-flag">🇬🇧</span>
+          <div class="lang-info">
+            <div class="lang-name">Anglais</div>
+            <div class="lang-level">Intermédiaire · B2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORMATION -->
+  <div class="tab-panel" id="tab-formation">
+    <div class="formation-grid">
+
+      <div class="formation-card">
+        <div class="formation-year">2014</div>
+        <div>
+          <div class="formation-degree">Master 2 — Psychologie Clinique et Pathologique</div>
+          <div class="formation-school">Université de Toulouse Jean Jaurès (UT2J)</div>
+          <div class="formation-detail">Spécialisation adolescence et ruptures identitaires. Mémoire sur la construction du récit de vie chez les mineurs isolés étrangers. Mention bien.</div>
+        </div>
+      </div>
+
+      <div class="formation-card">
+        <div class="formation-year">2012</div>
+        <div>
+          <div class="formation-degree">Licence — Sciences de l'Éducation</div>
+          <div class="formation-school">Université de Toulouse Jean Jaurès (UT2J)</div>
+          <div class="formation-detail">Ingénierie pédagogique, didactique des langues, accompagnement des apprentissages. Projet de fin d'études sur la médiation culturelle en milieu scolaire.</div>
+        </div>
+      </div>
+
+      <div class="formation-card">
+        <div class="formation-year">2005</div>
+        <div>
+          <div class="formation-degree">Formation Praticien CV Interactif (CVi)</div>
+          <div class="formation-school">Institut CVi · Méthode François Démarthon</div>
+          <div class="formation-detail">Formation initiale puis formation de formateurs. Pratique ininterrompue depuis 20 ans. Adaptation de la méthode aux publics précaires, judiciaires et culturellement éloignés.</div>
+        </div>
+      </div>
+
+      <div class="formation-card">
+        <div class="formation-year">2003</div>
+        <div>
+          <div class="formation-degree">DU Interprétariat en Milieu Social et Judiciaire</div>
+          <div class="formation-school">Université de Toulouse · ESIT partenaire</div>
+          <div class="formation-detail">Techniques d'interprétation consécutive et simultanée. Déontologie de l'interprète judiciaire. Terminologie juridique français–arabe. Habilitation près la Cour d'Appel de Toulouse.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="certifs-section">
+      <h3 class="certifs-title">Certifications & Habilitations</h3>
+      <div class="certif-list">
+        <div class="certif-item">
+          <span class="certif-dot"></span>
+          <span class="certif-name">Expert assermenté près la Cour d'Appel de Toulouse</span>
+          <span class="certif-date">En cours</span>
+        </div>
+        <div class="certif-item">
+          <span class="certif-dot"></span>
+          <span class="certif-name">Habilitation interprète judiciaire — Ministère de la Justice</span>
+          <span class="certif-date">Renouvelée 2023</span>
+        </div>
+        <div class="certif-item">
+          <span class="certif-dot"></span>
+          <span class="certif-name">Formateur agréé CVi — Praticien confirmé</span>
+          <span class="certif-date">2010</span>
+        </div>
+        <div class="certif-item">
+          <span class="certif-dot"></span>
+          <span class="certif-name">Formation IA & outils Claude (Anthropic) — Développement Mon Miroir</span>
+          <span class="certif-date">2025</span>
+        </div>
+        <div class="certif-item">
+          <span class="certif-dot"></span>
+          <span class="certif-name">Sensibilisation RGPD — traitement des données de mineurs</span>
+          <span class="certif-date">2022</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJET MON MIROIR -->
+  <div class="tab-panel" id="tab-projet">
+
+    <div class="projet-banner">
+      <div class="projet-label">Innovation 2026</div>
+      <div class="projet-title">Mon Miroir — IA & MNA</div>
+      <div class="projet-desc">
+        Un dispositif inédit qui combine intelligence artificielle et méthode CVi pour restituer aux Mineurs Non Accompagnés une image d'eux-mêmes à partir de laquelle ils peuvent construire. Trois agents IA, un Pilote humain, un Tribunal pour Enfants.
+      </div>
+      <a href="index.html" class="projet-link">Découvrir le projet →</a>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">Janvier 2026</div>
+        <div class="tl-role">Conception du dispositif</div>
+        <div class="tl-org">Toulouse</div>
+        <div class="tl-desc">Formalisation de l'architecture à 3 agents (IA Designer, IA Scénariste, IA Pilote) supervisés par le Pilote humain. Modélisation des flux d'interaction et des protocoles de signalement éthique.</div>
+        <div class="tl-tags"><span class="tl-tag">Architecture IA</span><span class="tl-tag">Éthique</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Février 2026</div>
+        <div class="tl-role">Prototypes & Cas Tests</div>
+        <div class="tl-org">Tribunal pour Enfants de Toulouse</div>
+        <div class="tl-desc">Réalisation de deux portraits narratifs complets : "L'Aube à la Cité Djamâa" et le portrait d'Amine, 16 ans. Preuve de concept présentée au Tribunal. Démo interactive développée en HTML/CSS/JS.</div>
+        <div class="tl-tags"><span class="tl-tag">Preuve de concept</span><span class="tl-tag">Portraits narratifs</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Mars–Juin 2026</div>
+        <div class="tl-role">Phase pilote — 12 semaines</div>
+        <div class="tl-org">Foyer MNA · Occitanie</div>
+        <div class="tl-desc">Déploiement avec 3 à 5 MNA volontaires. Coordination PJJ, ASE, Juge des Enfants. Mesure de l'impact sur les audiences et les décisions judiciaires. Restitution institutionnelle en juin.</div>
+        <div class="tl-tags"><span class="tl-tag">Pilote terrain</span><span class="tl-tag">Impact judiciaire</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="tab-panel" id="tab-contact">
+    <div class="contact-layout">
+      <div>
+        <h2 class="contact-intro">Travaillons <em>ensemble</em></h2>
+        <p class="contact-sub">
+          Pour toute demande d'interprétariat judiciaire, de consultation psychologique, de formation CVi ou de présentation du projet Mon Miroir aux institutions — je suis disponible.
+        </p>
+        <div class="contact-items">
+          <a href="tel:0667018342" class="contact-item">
+            <span class="contact-item-icon">📞</span>
+            <div>
+              <div class="contact-item-label">Téléphone</div>
+              <div class="contact-item-val">06 67 01 83 42</div>
+            </div>
+          </a>
+          <a href="mailto:Mohamedanaya@hotmail.fr" class="contact-item">
+            <span class="contact-item-icon">✉️</span>
+            <div>
+              <div class="contact-item-label">Email</div>
+              <div class="contact-item-val">Mohamedanaya@hotmail.fr</div>
+            </div>
+          </a>
+          <a href="https://wa.me/33667018342" target="_blank" rel="noopener" class="contact-item">
+            <span class="contact-item-icon">💬</span>
+            <div>
+              <div class="contact-item-label">WhatsApp</div>
+              <div class="contact-item-val">Message direct</div>
+            </div>
+          </a>
+          <a href="index.html" class="contact-item">
+            <span class="contact-item-icon">🪞</span>
+            <div>
+              <div class="contact-item-label">Projet Mon Miroir</div>
+              <div class="contact-item-val">Voir la présentation complète</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-avatar">SMA</div>
+        <div class="contact-name">Si Mohamed ANAYA</div>
+        <div class="contact-title-card">Interprète · Psychologue · Praticien CVi</div>
+        <div class="contact-card-sep"></div>
+        <div class="contact-quote">
+          Ces jeunes ne manquent pas de capacités. Ils manquent d'un miroir qui leur renvoie une image d'eux-mêmes dans laquelle ils peuvent se reconnaître et à partir de laquelle ils peuvent construire.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="cv-footer">
+  <div class="cv-footer-logo">Si Mohamed <span>ANAYA</span></div>
+  <div class="cv-footer-sub">CV Interactif · Tribunal pour Enfants de Toulouse · 2026</div>
+</footer>
+
+<script>
+/* ── TABS ── */
+const btns = document.querySelectorAll('.tab-btn');
+const panels = document.querySelectorAll('.tab-panel');
+
+btns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.tab;
+    btns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+    panels.forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+    document.getElementById('tab-' + target).classList.add('active');
+    if (target === 'competences') animateBars();
+  });
+});
+
+/* ── SKILL BARS ── */
+function animateBars() {
+  document.querySelectorAll('.skill-bar').forEach(bar => {
+    const w = parseFloat(bar.style.getPropertyValue('--w') || bar.style.cssText.match(/--w:([\d.]+)/)?.[1] || 1);
+    bar.style.transform = 'scaleX(0)';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        bar.style.transform = `scaleX(${w})`;
+        bar.classList.add('animated');
+      });
+    });
+  });
+}
+
+/* ── COUNTER ANIMATION ── */
+function animateCounters() {
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const target = parseInt(el.dataset.count);
+    const duration = 1800;
+    const step = target / (duration / 16);
+    let current = 0;
+    const timer = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.textContent = Math.round(current) + (target >= 100 ? '+' : '');
+      if (current >= target) clearInterval(timer);
+    }, 16);
+  });
+}
+
+const statsStrip = document.querySelector('.stats-strip');
+const observer = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting) {
+    animateCounters();
+    observer.disconnect();
+  }
+}, { threshold: 0.3 });
+observer.observe(statsStrip);
+
+/* ── SKILL BARS on scroll ── */
+const skillsObs = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting) {
+    animateBars();
+    skillsObs.disconnect();
+  }
+}, { threshold: 0.2 });
+const firstSkillCard = document.querySelector('.skill-card');
+if (firstSkillCard) skillsObs.observe(firstSkillCard);
+
+/* ── TIMELINE ITEMS REVEAL ── */
+const tlItems = document.querySelectorAll('.tl-item');
+const tlObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.15 });
+
+tlItems.forEach(item => {
+  item.style.opacity = '0';
+  item.style.transform = 'translateY(20px)';
+  item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  tlObs.observe(item);
+});
+</script>
+</body>
+</html>
