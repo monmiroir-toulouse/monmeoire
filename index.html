@@ -314,6 +314,110 @@
   .btn-email:hover { background: var(--gold-light); }
   .contact-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
 
+  /* FORMULAIRE DE CONTACT */
+  .contact-section { background: var(--white); }
+  .contact-section .section-title { color: var(--navy); }
+  .contact-wrapper {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem; align-items: start;
+  }
+  .contact-info h3 {
+    font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--navy); margin-bottom: 1rem;
+  }
+  .contact-info p { font-size: 0.95rem; color: var(--text-light); line-height: 1.8; margin-bottom: 1.5rem; }
+  .contact-detail {
+    display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.8rem;
+    font-size: 0.9rem; color: var(--text);
+  }
+  .contact-detail a { color: var(--gold); text-decoration: none; font-weight: 500; }
+  .contact-detail a:hover { color: var(--gold-light); }
+  .contact-icon { font-size: 1.2rem; width: 24px; text-align: center; }
+  .contact-form {
+    background: var(--cream); border-radius: 1.2rem; padding: 2.5rem;
+    border: 1px solid var(--cream-dark);
+  }
+  .form-group { margin-bottom: 1.4rem; }
+  .form-group label {
+    display: block; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--navy); margin-bottom: 0.5rem;
+  }
+  .form-group input, .form-group textarea {
+    width: 100%; padding: 0.85rem 1rem;
+    border: 1px solid var(--cream-dark); border-radius: 0.5rem;
+    font-family: 'DM Sans', sans-serif; font-size: 0.93rem; color: var(--text);
+    background: var(--white); transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+  }
+  .form-group input:focus, .form-group textarea:focus {
+    border-color: var(--gold); box-shadow: 0 0 0 3px rgba(200,146,42,0.12);
+  }
+  .form-group textarea { resize: vertical; min-height: 130px; }
+  .form-submit {
+    width: 100%; padding: 1rem; background: var(--navy); color: var(--white);
+    border: none; border-radius: 0.5rem; font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .form-submit:hover { background: var(--navy-light); transform: translateY(-1px); }
+  .form-success {
+    display: none; text-align: center; padding: 1.5rem;
+    background: #dcfce7; border-radius: 0.5rem; color: #166534;
+    font-weight: 500; font-size: 0.95rem; margin-top: 1rem;
+  }
+
+  /* CHATBOT */
+  .chatbot-toggle {
+    position: fixed; bottom: 2rem; left: 1.5rem; z-index: 300;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #6d28d9; color: #fff; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(109,40,217,0.4); font-size: 1.4rem;
+    transition: all 0.25s;
+  }
+  .chatbot-toggle:hover { background: #7c3aed; transform: scale(1.07); }
+  .chatbot-panel {
+    position: fixed; bottom: 5.5rem; left: 1.5rem; z-index: 299;
+    width: 340px; max-height: 480px;
+    background: var(--navy); border-radius: 1.2rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    display: none; flex-direction: column;
+    border: 1px solid rgba(200,146,42,0.25);
+    overflow: hidden;
+  }
+  .chatbot-panel.open { display: flex; }
+  .chatbot-head {
+    padding: 1rem 1.2rem; background: rgba(0,0,0,0.25);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .chatbot-head-dot { width: 8px; height: 8px; border-radius: 50%; background: #a78bfa; }
+  .chatbot-head-title { font-size: 0.85rem; color: #fff; font-weight: 600; flex: 1; }
+  .chatbot-head-sub { font-size: 0.72rem; color: rgba(255,255,255,0.45); }
+  .chatbot-messages {
+    flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 0.7rem;
+    min-height: 200px; max-height: 300px;
+  }
+  .cb-msg { padding: 0.7rem 0.9rem; border-radius: 0.9rem; font-size: 0.84rem; line-height: 1.6; max-width: 88%; }
+  .cb-msg-bot { background: rgba(167,139,250,0.15); color: #fff; border: 1px solid rgba(167,139,250,0.2); align-self: flex-start; border-bottom-left-radius: 0.2rem; }
+  .cb-msg-user { background: #6d28d9; color: #fff; align-self: flex-end; border-bottom-right-radius: 0.2rem; }
+  .chatbot-input-row {
+    display: flex; gap: 0.5rem; padding: 0.8rem 1rem;
+    border-top: 1px solid rgba(255,255,255,0.08); background: rgba(0,0,0,0.15);
+  }
+  .chatbot-input {
+    flex: 1; padding: 0.6rem 0.9rem; border-radius: 0.6rem;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+    color: #fff; font-family: 'DM Sans', sans-serif; font-size: 0.84rem; outline: none;
+    transition: border-color 0.2s;
+  }
+  .chatbot-input::placeholder { color: rgba(255,255,255,0.35); }
+  .chatbot-input:focus { border-color: #a78bfa; }
+  .chatbot-send {
+    padding: 0.6rem 1rem; background: #6d28d9; color: #fff; border: none;
+    border-radius: 0.6rem; font-size: 0.85rem; cursor: pointer; transition: background 0.2s;
+    font-weight: 600;
+  }
+  .chatbot-send:hover { background: #7c3aed; }
+
   /* RESPONSIVE */
   @media (max-width: 768px) {
     .demo-wrapper { grid-template-columns: 1fr; }
@@ -321,6 +425,8 @@
     .phases { grid-template-columns: 1fr; }
     .nav-links { display: none; }
     .hero-stats { gap: 1.5rem; }
+    .contact-wrapper { grid-template-columns: 1fr; }
+    .chatbot-panel { width: calc(100vw - 3rem); }
   }
 </style>
 </head>
@@ -348,6 +454,7 @@
     <li><a href="#cas">Cas tests</a></li>
     <li><a href="#deploiement">Déploiement</a></li>
     <li><a href="#telechargement">Dossier</a></li>
+    <li><a href="#contact">Contact</a></li>
     <li><a href="démo.html" style="color:var(--navy);background:var(--gold);padding:0.35rem 1rem;border-radius:0.4rem;font-weight:700;">▶ Démo interactive</a></li>
   </ul>
 </nav>
@@ -575,6 +682,77 @@
   </div>
 </section>
 
+<!-- FORMULAIRE DE CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="section-label">06 — Contact</div>
+    <h2 class="section-title">Nous <em>contacter</em></h2>
+    <p class="section-sub">Une question sur le projet Mon Miroir ? Une proposition de partenariat ? Écrivez-nous directement.</p>
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <h3>Si Mohamed ANAYA</h3>
+        <p>Interprète Expert Judiciaire · Conseiller d'Orientation et Psychologue · Pilote humain du projet Mon Miroir auprès du Tribunal pour Enfants de Toulouse.</p>
+        <div class="contact-detail">
+          <span class="contact-icon">📞</span>
+          <span><a href="tel:0667018342">06 67 01 83 42</a></span>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-icon">✉️</span>
+          <span><a href="mailto:Mohamedanaya@hotmail.fr">Mohamedanaya@hotmail.fr</a></span>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-icon">📍</span>
+          <span>Tribunal pour Enfants de Toulouse, Toulouse, France</span>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-icon">💬</span>
+          <span><a href="https://wa.me/33667018342" target="_blank" rel="noopener">WhatsApp disponible</a></span>
+        </div>
+        <p style="margin-top:1.5rem; font-size:0.88rem; color:var(--text-light); border-left:3px solid var(--gold); padding-left:1rem; line-height:1.7; font-style:italic;">
+          Vous pouvez aussi utiliser le chatbot Mon Miroir (en bas à gauche) pour obtenir des réponses immédiates sur le projet et les MNA.
+        </p>
+      </div>
+      <div class="contact-form">
+        <form id="contactForm" onsubmit="handleFormSubmit(event)">
+          <div class="form-group">
+            <label for="contactNom">Nom complet</label>
+            <input type="text" id="contactNom" name="nom" placeholder="Votre nom" required>
+          </div>
+          <div class="form-group">
+            <label for="contactEmail">Adresse email</label>
+            <input type="email" id="contactEmail" name="email" placeholder="votre@email.fr" required>
+          </div>
+          <div class="form-group">
+            <label for="contactMessage">Message</label>
+            <textarea id="contactMessage" name="message" placeholder="Décrivez votre demande, votre institution, votre question sur Mon Miroir…" required></textarea>
+          </div>
+          <button type="submit" class="form-submit">Envoyer le message →</button>
+          <div class="form-success" id="formSuccess">
+            ✅ Message envoyé ! Si Mohamed ANAYA vous répondra dans les plus brefs délais.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHATBOT MON MIROIR -->
+<button class="chatbot-toggle" id="chatbotToggle" aria-label="Chatbot Mon Miroir" title="Questions sur Mon Miroir & MNA">🪞</button>
+<div class="chatbot-panel" id="chatbotPanel">
+  <div class="chatbot-head">
+    <div class="chatbot-head-dot"></div>
+    <div>
+      <div class="chatbot-head-title">Chatbot Mon Miroir</div>
+      <div class="chatbot-head-sub">Questions sur le projet & les MNA</div>
+    </div>
+  </div>
+  <div class="chatbot-messages" id="cbMessages"></div>
+  <div class="chatbot-input-row">
+    <input class="chatbot-input" id="cbInput" type="text" placeholder="Posez votre question…" autocomplete="off">
+    <button class="chatbot-send" onclick="cbSend()">→</button>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Mon <span>Miroir</span></div>
@@ -739,6 +917,130 @@ async function initChat() {
 }
 
 window.addEventListener('load', initChat);
+
+/* ===== FORMULAIRE DE CONTACT ===== */
+function handleFormSubmit(e) {
+  e.preventDefault();
+  const nom = document.getElementById('contactNom').value;
+  const email = document.getElementById('contactEmail').value;
+  const message = document.getElementById('contactMessage').value;
+  const subject = encodeURIComponent('Mon Miroir — Message de ' + nom);
+  const body = encodeURIComponent('Nom : ' + nom + '\nEmail : ' + email + '\n\nMessage :\n' + message);
+  window.location.href = 'mailto:Mohamedanaya@hotmail.fr?subject=' + subject + '&body=' + body;
+  document.getElementById('formSuccess').style.display = 'block';
+  e.target.reset();
+}
+
+/* ===== CHATBOT MON MIROIR ===== */
+const cbKnowledge = [
+  {
+    keys: ['qu\'est-ce que', 'c\'est quoi', 'présente', 'présentation', 'mon miroir', 'projet'],
+    answer: "Mon Miroir est un projet d'IA au service des Mineurs Non Accompagnés (MNA). Il utilise 3 agents IA — Designer, Scénariste, Pilote — supervisés par Si Mohamed ANAYA, pour restaurer l'identité et construire un récit de vie digne, transmissible au Tribunal pour Enfants de Toulouse."
+  },
+  {
+    keys: ['mna', 'mineur non accompagné', 'mineurs non accompagnés', 'qui sont'],
+    answer: "Les MNA (Mineurs Non Accompagnés) sont des jeunes étrangers de moins de 18 ans arrivés en France sans représentant légal. Souvent traumatisés par un long exil, ils sont pris en charge par l'Aide Sociale à l'Enfance (ASE) et la Protection Judiciaire de la Jeunesse (PJJ), et comparaissent devant le Tribunal pour Enfants."
+  },
+  {
+    keys: ['ia designer', 'designer', 'image', 'portrait', 'visuel'],
+    answer: "L'IA Designer valorise l'image de soi du jeune. Elle crée un portrait numérique personnel — un premier contact doux qui travaille l'estime de soi et la dignité visuelle. C'est souvent la porte d'entrée la plus douce dans le dispositif Mon Miroir."
+  },
+  {
+    keys: ['ia scénariste', 'scénariste', 'récit', 'narration', 'histoire', 'vie'],
+    answer: "L'IA Scénariste guide la construction du récit de vie. Elle pose des questions douces et progressives, collecte les fragments d'identité, et tisse un portrait narratif cohérent — utilisable comme argument devant le juge des enfants."
+  },
+  {
+    keys: ['ia pilote', 'pilote', 'agenda', 'audience', 'coordin'],
+    answer: "L'IA Pilote gère l'agenda institutionnel du jeune : audiences, santé, foyer, formation. Elle s'assure que le MNA reste visible et joignable dans le réseau d'acteurs (ASE, PJJ, éducateurs, magistrats)."
+  },
+  {
+    keys: ['anaya', 'si mohamed', 'pilote humain', 'interprète', 'psychologue'],
+    answer: "Si Mohamed ANAYA est le Pilote humain de Mon Miroir. Interprète Expert Judiciaire, Conseiller d'Orientation et Psychologue avec plus de 20 ans d'expérience. Il oriente et supervise les 3 agents IA, garant de la dimension clinique, culturelle et éthique. Joignable au 06 67 01 83 42."
+  },
+  {
+    keys: ['déploiement', 'phase', 'semaine', 'pilote', 'calendrier', 'délai', 'démarrer'],
+    answer: "Le déploiement se fait en 3 phases sur 12 semaines :\n• Phase 1 (sem. 1–4) : Accord institutionnel, sélection de 3–5 MNA volontaires, IA Designer.\n• Phase 2 (sem. 5–8) : IA Scénariste, sessions guidées, coordination PJJ/ASE, CV Interactif.\n• Phase 3 (sem. 9–12) : Présentation aux magistrats, mesure d'impact, propositions de déploiement élargi.\nLa phase pilote peut démarrer en 30 jours, sans financement externe."
+  },
+  {
+    keys: ['financement', 'coût', 'budget', 'argent', 'gratuit'],
+    answer: "Mon Miroir peut démarrer sa phase pilote sans financement externe. L'approche est de prouver d'abord, puis de demander des financements institutionnels après démonstration de l'impact. Le projet est porté bénévolement par Si Mohamed ANAYA dans un premier temps."
+  },
+  {
+    keys: ['tribunal', 'juge', 'judiciaire', 'audience', 'justice'],
+    answer: "Mon Miroir est conçu pour le Tribunal pour Enfants de Toulouse. Le portrait narratif produit par l'IA Scénariste constitue un outil d'aide à la décision judiciaire : il rend le jeune visible, humain, sujet — et pas seulement un dossier administratif devant le Juge des Enfants."
+  },
+  {
+    keys: ['cv', 'interactif', 'livrable', 'document', 'résultat'],
+    answer: "Le CV Interactif est le livrable principal de Mon Miroir : un portrait narratif structuré, transmissible aux magistrats, éducateurs et partenaires institutionnels. Il peut être accompagné d'une vidéo-portrait — un court film narratif qui rend le jeune humain et visible."
+  },
+  {
+    keys: ['darija', 'arabe', 'langue', 'traduction', 'marocain'],
+    answer: "Mon Miroir est bilingue français / darija (arabe marocain). Si Mohamed ANAYA, interprète expert judiciaire, garantit la médiation culturelle et linguistique. La démonstration interactive de la page propose les deux langues."
+  },
+  {
+    keys: ['contact', 'appeler', 'téléphone', 'email', 'mail', 'joindre', 'partenariat'],
+    answer: "Pour contacter Si Mohamed ANAYA :\n📞 06 67 01 83 42\n✉️ Mohamedanaya@hotmail.fr\n💬 WhatsApp : +33 6 67 01 83 42\nOu utilisez le formulaire de contact en bas de cette page (section Contact)."
+  },
+  {
+    keys: ['ase', 'aide sociale', 'enfance', 'pjj', 'protection', 'institution'],
+    answer: "Mon Miroir travaille en coordination avec l'ASE (Aide Sociale à l'Enfance), la PJJ (Protection Judiciaire de la Jeunesse), les éducateurs des foyers MNA, et le Tribunal pour Enfants. L'IA Pilote facilite cette coordination multi-acteurs autour du jeune."
+  },
+  {
+    keys: ['éthique', 'sécurité', 'données', 'confidentialité', 'rgpd', 'risque'],
+    answer: "L'éthique est au cœur de Mon Miroir. Le Pilote humain (Si Mohamed ANAYA) supervise chaque IA. L'outil ne remplace jamais le professionnel. Les données des jeunes sont traitées avec la confidentialité requise par le cadre judiciaire. L'IA est un outil, jamais un substitut au jugement humain."
+  }
+];
+
+const cbFallbacks = [
+  "Je ne suis pas sûr de bien comprendre votre question. Essayez de mentionner : Mon Miroir, MNA, les agents IA, le déploiement, Si Mohamed ANAYA, ou le Tribunal pour Enfants.",
+  "Bonne question ! Pour y répondre précisément, contactez Si Mohamed ANAYA au 06 67 01 83 42 ou via le formulaire de contact ci-dessous.",
+  "Ce sujet mérite une réponse personnalisée. Je vous invite à utiliser le formulaire de contact ou à appeler directement le 06 67 01 83 42."
+];
+let cbFallbackIdx = 0;
+
+function cbMatch(text) {
+  const lower = text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  for (const item of cbKnowledge) {
+    for (const key of item.keys) {
+      const normKey = key.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      if (lower.includes(normKey)) return item.answer;
+    }
+  }
+  return null;
+}
+
+function cbAddMsg(text, type) {
+  const area = document.getElementById('cbMessages');
+  const div = document.createElement('div');
+  div.className = 'cb-msg cb-msg-' + type;
+  div.textContent = text;
+  area.appendChild(div);
+  area.scrollTop = area.scrollHeight;
+}
+
+function cbSend() {
+  const input = document.getElementById('cbInput');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  cbAddMsg(text, 'user');
+  setTimeout(() => {
+    const answer = cbMatch(text) || cbFallbacks[cbFallbackIdx++ % cbFallbacks.length];
+    cbAddMsg(answer, 'bot');
+  }, 350);
+}
+
+document.getElementById('cbInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') cbSend();
+});
+
+document.getElementById('chatbotToggle').addEventListener('click', function() {
+  const panel = document.getElementById('chatbotPanel');
+  const isOpen = panel.classList.toggle('open');
+  if (isOpen && document.getElementById('cbMessages').children.length === 0) {
+    cbAddMsg("Bonjour ! Je suis le chatbot Mon Miroir. Posez-moi vos questions sur le projet, les MNA, les agents IA, le déploiement ou Si Mohamed ANAYA.", 'bot');
+  }
+});
 </script>
 </body>
 </html>
